@@ -28,7 +28,7 @@ import numpy as np
 with warnings.catch_warnings():
     warnings.filterwarnings("ignore",category=DeprecationWarning)
     from sklearn.base import BaseEstimator
-    from zDataManager import DataManager # The class provided by binome 1
+    #from zDataManager import DataManager # The class provided by binome 1
     # Note: if zDataManager is not ready, use the mother class DataManager
     from sklearn.decomposition import PCA
 
