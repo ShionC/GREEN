@@ -6,7 +6,7 @@ Revision History :
 #CY : Ajout de tests
 """
 
-from preprocess import Preprocessor
+# from preprocess import Preprocessor
 from sys import argv
 import warnings
 import numpy as np
@@ -23,7 +23,6 @@ with warnings.catch_warnings():
     from sklearn.feature_selection import VarianceThreshold
 
 class Preprocessor(BaseEstimator):
-    X_scaled = preprocessing.scale(X_train)
     def __init__(self):
         # Pour avoir la 2D
         self.transformer = PCA(n_components=2)
@@ -33,6 +32,7 @@ class Preprocessor(BaseEstimator):
         if y.ndim>1: self.num_labels = y.shape[1]
 
         X_preprocess = self.preprocess.fit_transform(X)
+        X_scaled = preprocessing.scale(X)
         self.mod.fit(X_preprocess, y)
         self.is_trained = True
         self.transformer = IsolationForest(random_state=0).fit(X_scaled)
@@ -117,7 +117,7 @@ if __name__=="__main__":
     print(D)
 
     # Fonction de test
-    def test():
+def test():
     # Load votre model
     mod = model()
     # 1 - créer un data X_random et y_random fictives: utiliser https://docs.scipy.org/doc/numpy-1.14.0/reference/generated/numpy.random.rand.html
